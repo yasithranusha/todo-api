@@ -7,6 +7,7 @@ import com.yasith.todo.exception.TodoAPIException;
 import com.yasith.todo.repository.RoleRepository;
 import com.yasith.todo.repository.UserRepository;
 import com.yasith.todo.service.AuthService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,14 @@ public class AuthServiceImpl implements AuthService {
     private UserRepository userRepository;
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    public AuthServiceImpl(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
+
     @Override
     public String register(RegisterDto registerDto) {
         //Check username exist
