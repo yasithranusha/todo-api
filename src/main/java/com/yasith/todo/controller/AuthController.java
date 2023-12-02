@@ -1,5 +1,6 @@
 package com.yasith.todo.controller;
 
+import com.yasith.todo.dto.LoginDto;
 import com.yasith.todo.dto.RegisterDto;
 import com.yasith.todo.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +26,13 @@ public class AuthController {
     public ResponseEntity<String> register(@RequestBody RegisterDto registerDto){
         String response = authService.register(registerDto);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
+    //Build Login REST API
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody LoginDto loginDto){
+        String response = authService.login(loginDto);
+
+        return new ResponseEntity<>(response,HttpStatus.CREATED);
     }
 }
